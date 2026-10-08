@@ -23,8 +23,8 @@ jobs:
         env:
           CV_REPO_TOKEN: ${{ secrets.CV_REPO_TOKEN }}
         run: |
-          git remote set-url origin "https://x-access-token:${CV_REPO_TOKEN}@github.com/joseph-ryan-quantum/joseph-ryan-quantum.github.io.git"
-          git remote add overleaf-cv "https://x-access-token:${CV_REPO_TOKEN}@github.com/joseph-ryan-quantum/CV_github.git"
+          git remote set-url origin "https://x-access-token:${CV_REPO_TOKEN}@github.com/joseph-m-ryan/joseph-m-ryan.github.io.git"
+          git remote add overleaf-cv "https://x-access-token:${CV_REPO_TOKEN}@github.com/joseph-m-ryan/CV_github.git"
           git fetch overleaf-cv main
           git subtree pull --prefix=cv overleaf-cv main --squash -m "Sync CV from Overleaf"
           git push origin main
