@@ -1,16 +1,31 @@
 {% include base_path %}
 
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 {% include seo.html %}
 
 <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+{% comment %}
+  Set the color theme before first paint. An explicit choice saved by the toggle
+  wins; otherwise default_dark_mode decides, falling back to the OS preference.
+  No line comments in here: the compress layout joins this script onto one line.
+{% endcomment %}
 <script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  (function () {
+    var root = document.documentElement;
+    root.className = root.className.replace(/\bno-js\b/g, '') + ' js';
+    var theme = null;
+    try { theme = localStorage.getItem('theme'); } catch (e) {}
+    if (theme !== 'dark' && theme !== 'light') {
+      theme = {% if site.default_dark_mode %}'dark'{% else %}(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'){% endif %};
+    }
+    root.setAttribute('data-theme', theme);
+  })();
 </script>
 
-<!-- For all browsers -->
-<link rel="stylesheet" href="{{ base_path }}/assets/css/main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="{{ base_path }}/assets/css/site.css">

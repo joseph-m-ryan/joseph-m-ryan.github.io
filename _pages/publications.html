@@ -2,20 +2,40 @@
 layout: archive
 title: "Publications"
 permalink: /publications/
-author_profile: true
 hide_title: true
 ---
 
 {% include base_path %}
+{% assign pubs = site.publications | sort: "date" | reverse %}
+{% assign by_year = pubs | group_by_exp: "p", "p.date | date: '%Y'" %}
 
-{% if site.author.googlescholar %}
-  <p>You can find my work on my <a href="{{ site.author.googlescholar }}">Google Scholar page</a>.</p>
-  <hr>
-{% endif %}
+<header class="page-head">
+  <h1 class="page-head__title">{{ page.title }}</h1>
+  <p class="page-head__lead">
+    Papers and preprints, newest first.
+    {% if site.author.googlescholar %}Also on <a href="{{ site.author.googlescholar }}">Google Scholar</a>{% if site.author.orcid %} and <a href="{{ site.author.orcid }}">ORCID</a>{% endif %}.{% endif %}
+  </p>
+</header>
 
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
+{% comment %} Revealed by site.js; without JS every paper is simply listed. {% endcomment %}
+<div class="filters" data-pub-filters role="group" aria-label="Filter publications" hidden>
+  <button class="pill" type="button" data-filter="all" aria-pressed="true">All<span class="pill__count">({{ pubs.size }})</span></button>
+  {% for cat in site.publication_category %}
+    {% assign key = cat[0] %}
+    {% assign in_cat = pubs | where: "category", key %}
+    {% if in_cat.size > 0 %}
+      <button class="pill" type="button" data-filter="{{ key }}" aria-pressed="false"><span class="pill__dot{% if key == 'preprints' %} pill__dot--preprint{% endif %}" aria-hidden="true"></span>{{ cat[1].title }}<span class="pill__count">({{ in_cat.size }})</span></button>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% for year in by_year %}
+  <section class="year-group" aria-labelledby="year-{{ year.name }}">
+    <h2 class="year-head" id="year-{{ year.name }}">{{ year.name }}</h2>
+    <ol class="pub-list">
+      {% for post in year.items %}
+        {% include pub-entry.html pub=post %}
+      {% endfor %}
+    </ol>
+  </section>
 {% endfor %}
-
-
-

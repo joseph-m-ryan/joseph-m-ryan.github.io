@@ -1,0 +1,12 @@
+{% comment %}
+  Authors, venue line and optional highlight for one publication.
+  Usage: {% include pub-meta.html pub=post %}
+  The site author's name is emphasised wherever it appears in `authors`.
+{% endcomment %}
+{% assign pub = include.pub %}
+{% capture me_html %}<span class="me">{{ site.author.name }}</span>{% endcapture %}
+{% if pub.authors %}<p class="pub__authors">{{ pub.authors | replace: site.author.name, me_html }}</p>{% endif %}
+<p class="pub__venue">{{ pub.venue }}{% if pub.date %} ({{ pub.date | date: "%Y" }}){% endif %}</p>
+{% if pub.highlight %}
+  <p class="pub__highlight"><i class="fas fa-star" aria-hidden="true"></i>{% if pub.highlight_url %}<a href="{{ pub.highlight_url }}">{{ pub.highlight }}</a>{% else %}{{ pub.highlight }}{% endif %}</p>
+{% endif %}

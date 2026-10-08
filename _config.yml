@@ -87,10 +87,16 @@ author:
 publication_category:
   books:
     title: 'Books'
+    singular: 'Book'
   manuscripts:
-    title: 'Journal Articles'    
+    title: 'Journal Articles'
+    singular: 'Journal article'
   conferences:
     title: 'Conference Papers'
+    singular: 'Conference paper'
+  preprints:
+    title: 'Preprints'
+    singular: 'Preprint'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
@@ -268,17 +274,13 @@ defaults:
       path: ""
       type: publications
     values:
-      layout: single
-      author_profile: true
-      comments: true
+      layout: publication
   # _portfolio
   - scope:
       path: ""
       type: portfolio
     values:
-      layout: single
-      author_profile: true
-      comment: true
+      layout: project
   # _talks
   - scope:
       path: ""

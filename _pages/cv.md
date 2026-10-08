@@ -1,14 +1,17 @@
 ---
 layout: archive
-title: "CV"
+title: "Curriculum Vitae"
 permalink: /cv/
-author_profile: true
+subtitle: "Generated from the LaTeX source of my CV, which is also available as a PDF."
+actions:
+  - label: "Download PDF"
+    url: /files/cv.pdf
+    icon: "far fa-file-pdf"
+    primary: true
 redirect_from:
   - /resume
 ---
 
-{% include base_path %}
-
-[Download CV as PDF](/files/cv.pdf)
-
+<div class="prose cv">
 {% include cv-generated.html %}
+</div>

@@ -2,14 +2,27 @@
 layout: archive
 title: "Projects"
 permalink: /portfolio/
-author_profile: true
-hide_title: true
+subtitle: "Research threads that span experiment, theory, and several papers."
 ---
 
 {% include base_path %}
 
-
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
-{% endfor %}
-
+<div class="project-list">
+  {% for project in site.portfolio %}
+    {% assign slug = project.slug %}
+    {% assign related = site.publications | where_exp: "p", "p.projects contains slug" %}
+    <a class="card card--row" href="{{ base_path }}{{ project.url }}">
+      {% if project.thumbnail %}
+        <div class="card__media{% if project.thumbnail_style == 'figure' %} card__media--figure{% endif %}">
+          <img src="{{ base_path }}{{ project.thumbnail }}" alt="" loading="lazy" decoding="async">
+        </div>
+      {% endif %}
+      <div class="card__body">
+        {% if related.size > 0 %}<div class="card__meta">{{ related.size }} paper{% if related.size != 1 %}s{% endif %}</div>{% endif %}
+        <h2 class="card__title">{{ project.title }}</h2>
+        {% if project.excerpt %}<p class="card__text">{{ project.excerpt | strip_html | strip }}</p>{% endif %}
+        <span class="card__more">Read more <span aria-hidden="true">&rarr;</span></span>
+      </div>
+    </a>
+  {% endfor %}
+</div>

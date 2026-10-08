@@ -1,0 +1,125 @@
+---
+layout: default
+---
+
+{% include base_path %}
+{% assign author = site.author %}
+{% assign pubs = site.publications | sort: "date" | reverse %}
+
+<div class="hero-wrap">
+  <div class="container hero">
+    <div class="hero__main">
+      {% if page.eyebrow %}<p class="eyebrow">{{ page.eyebrow }}</p>{% endif %}
+      <h1 class="hero__name">{{ author.name }}</h1>
+      {% if page.role %}<p class="hero__role">{{ page.role }}</p>{% endif %}
+
+      <div class="hero__bio">
+        {{ content }}
+      </div>
+
+      {% if page.interests %}
+        <div class="hero__interests">
+          <h2>Research interests</h2>
+          <ul class="chips">
+            {% for interest in page.interests %}<li class="chip">{{ interest }}</li>{% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if page.announcement %}
+        <a class="latest" href="{{ page.announcement.url | prepend: base_path }}">
+          <span class="latest__label">{{ page.announcement.label | default: "New" }}</span>
+          <span>{{ page.announcement.text | markdownify | remove: "<p>" | remove: "</p>" | strip }}</span>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      {% endif %}
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="{{ base_path }}/publications/">Publications <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn" href="{{ base_path }}/cv/"><i class="far fa-file-lines" aria-hidden="true"></i>CV</a>
+        {% if author.email %}<a class="btn" href="mailto:{{ author.email }}"><i class="far fa-envelope" aria-hidden="true"></i>Email</a>{% endif %}
+      </div>
+    </div>
+
+    <aside class="hero__aside" aria-label="Profile">
+      <div class="profile-card">
+        {% if author.avatar contains "://" %}
+          {% assign avatar = author.avatar %}
+        {% else %}
+          {% assign avatar = author.avatar | prepend: "/images/" | prepend: base_path %}
+        {% endif %}
+        <img class="profile-card__photo" src="{{ avatar }}" alt="Photo of {{ author.name }}" width="256" height="256" fetchpriority="high">
+        <ul class="contact-list">
+          {% if author.email %}<li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:{{ author.email }}">{{ author.email }}</a></li>{% endif %}
+          {% for item in page.affiliations %}
+            <li><i class="{{ item.icon }}" aria-hidden="true"></i>{% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}</li>
+          {% endfor %}
+          {% if author.googlescholar %}<li><i class="ai ai-google-scholar" aria-hidden="true"></i><a href="{{ author.googlescholar }}">Google Scholar</a></li>{% endif %}
+          {% if author.orcid %}<li><i class="ai ai-orcid" aria-hidden="true"></i><a href="{{ author.orcid }}">ORCID</a></li>{% endif %}
+          {% if author.github %}<li><i class="fab fa-github" aria-hidden="true"></i><a href="https://github.com/{{ author.github }}">GitHub</a></li>{% endif %}
+          {% if author.linkedin %}<li><i class="fab fa-linkedin" aria-hidden="true"></i><a href="https://www.linkedin.com/in/{{ author.linkedin }}">LinkedIn</a></li>{% endif %}
+          <li><i class="far fa-file-pdf" aria-hidden="true"></i><a href="{{ base_path }}/files/cv.pdf">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% if pubs.size > 0 %}
+<section class="container section" aria-labelledby="recent-work">
+  <div class="section__head">
+    <h2 class="section__title" id="recent-work">Recent work</h2>
+    <a class="btn" href="{{ base_path }}/publications/">All publications <span class="arrow" aria-hidden="true">&rarr;</span></a>
+  </div>
+  <div class="card-grid">
+    {% for post in pubs limit: 3 %}
+      {% include pub-card.html pub=post %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if site.data.news or site.data.talks %}
+<div class="container section">
+  <div class="two-col">
+    {% if site.data.news %}
+    <section class="section" aria-labelledby="news">
+      <div class="section__head">
+        <h2 class="section__title" id="news">News</h2>
+      </div>
+      <ul class="dated-list">
+        {% for item in site.data.news limit: 6 %}
+          {% assign tag_slug = item.category | slugify %}
+          <li class="dated-list__item">
+            <div class="dated-list__date">
+              <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: "%b %Y" }}</time>
+              {% if item.category %}<br><span class="dated-list__tag dated-list__tag--{{ tag_slug }}">{{ item.category }}</span>{% endif %}
+            </div>
+            <div class="dated-list__text">{{ item.text | markdownify }}</div>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if site.data.talks %}
+    <section class="section" aria-labelledby="talks">
+      <div class="section__head">
+        <h2 class="section__title" id="talks">Talks</h2>
+      </div>
+      <ul class="dated-list dated-list--compact">
+        {% for talk in site.data.talks %}
+          <li class="dated-list__item">
+            <div class="dated-list__date">{{ talk.year }}</div>
+            <div>
+              <p class="dated-list__title">{{ talk.title }}</p>
+              <p class="dated-list__sub">{{ talk.venue }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  </div>
+</div>
+{% endif %}

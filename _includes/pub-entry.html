@@ -1,0 +1,30 @@
+{% comment %}
+  One row of a publication list: thumbnail on the left, details on the right.
+  Usage: {% include pub-entry.html pub=post %}
+{% endcomment %}
+{% include base_path %}
+{% assign pub = include.pub %}
+{% assign pid = pub.slug | default: pub.title | slugify %}
+{% if pub.category == "preprints" %}
+  {% assign badge_class = "badge badge--preprint" %}
+  {% assign badge_text = pub.venue_short | default: "arXiv" %}
+{% else %}
+  {% assign badge_class = "badge" %}
+  {% assign badge_text = pub.venue_short | default: site.publication_category[pub.category].title %}
+{% endif %}
+<li class="pub{% unless pub.thumbnail %} pub--no-thumb{% endunless %}" data-type="{{ pub.category }}">
+  {% if pub.thumbnail %}
+    <a class="pub__thumb" href="{{ base_path }}{{ pub.url }}" tabindex="-1" aria-hidden="true">
+      <img src="{{ base_path }}{{ pub.thumbnail }}" alt="" width="720" height="540" loading="lazy" decoding="async">
+      <span class="{{ badge_class }}">{{ badge_text }}</span>
+    </a>
+  {% endif %}
+  <div class="pub__body">
+    <h3 class="pub__title">
+      {% unless pub.thumbnail %}<span class="{{ badge_class }} pub__badge-inline">{{ badge_text }}</span>{% endunless %}
+      <a href="{{ base_path }}{{ pub.url }}">{{ pub.title }}</a>
+    </h3>
+    {% include pub-meta.html pub=pub %}
+    {% include pub-links.html pub=pub id=pid toggles=true %}
+  </div>
+</li>

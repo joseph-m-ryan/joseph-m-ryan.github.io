@@ -1,18 +1,16 @@
-# The following is the order of the links in the header of the website.
+# Links in the site header, in order.
 #
-# Changing the order here will adjust the order and you can also add additional
-# links. Removing a link prevents it from showing in the header, but does not
-# prevent it from being included in the site.
-#
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
+# `match` (optional) also highlights the link on any page whose URL contains
+# it, so individual paper pages under /publication/ light up "Publications".
 
 main:
   - title: "Publications"
     url: /publications/
+    match: /publication/
 
   - title: "Projects"
     url: /portfolio/
+    match: /portfolio/
 
   - title: "CV"
     url: /cv/

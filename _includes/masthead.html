@@ -1,29 +1,47 @@
 {% include base_path %}
-<div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button><span class="navicon"></span></button>
-        <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
-            <a href="{{ base_path }}/">{{ site.title }}</a>
-          </li>
-          {% for link in site.data.navigation.main %}
-            {% if link.url contains 'http' %}
-              {% assign domain = '' %}
-            {% else %}
-              {% assign domain = base_path %}
-            {% endif %}
-            <li class="masthead__menu-item {% if page.url == link.url %}selected{% endif %}">
-              <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-        <ul class="hidden-links hidden"></ul>
-        <div id="theme-toggle">
-          <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
-        </div>
-      </nav>
-    </div>
+{% comment %} A nav link is current on its own page and on any page beneath it (e.g. /publication/... under Publications). {% endcomment %}
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ base_path }}/">
+      <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="1.6">
+          <ellipse cx="12" cy="12" rx="10" ry="4.2"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"/>
+        </g>
+        <circle cx="12" cy="12" r="2.3" fill="currentColor"/>
+      </svg>
+      <span>{{ site.title }}</span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        {% for link in site.data.navigation.main %}
+          {% if link.url contains '://' %}
+            {% assign href = link.url %}
+          {% else %}
+            {% assign href = link.url | prepend: base_path %}
+          {% endif %}
+          {% assign current = false %}
+          {% if page.url == link.url %}
+            {% assign current = true %}
+          {% elsif link.match and page.url contains link.match %}
+            {% assign current = true %}
+          {% endif %}
+          <li><a href="{{ href }}"{% if current %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+    </button>
+
+    <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Menu" aria-controls="site-nav" aria-expanded="false">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
   </div>
-</div>
+</header>

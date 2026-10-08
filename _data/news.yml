@@ -1,0 +1,21 @@
+# News items for the home page, newest first. The home page shows the first six.
+#
+#   date:     YYYY-MM-DD
+#   category: short tag shown under the date (e.g. Preprint, Publication, Talk, Award)
+#   text:     Markdown; links are fine
+
+- date: 2026-10-06
+  category: Preprint
+  text: "New preprint with Katherine Jonas and Christopher Monroe on the [heating and escape of trapped atoms driven by colored noise](/publication/2026-10-06-heating-escape-confined-atoms-colored-noise). [[arXiv]](https://arxiv.org/abs/2610.09047)"
+
+- date: 2026-08-08
+  category: Preprint
+  text: "New theory preprint on the [quantum–classical crossover in noisy monitored oscillators](/publication/2026-08-08-quantum-classical-crossover-noisy-monitored-oscillators). [[arXiv]](https://arxiv.org/abs/2608.08267)"
+
+- date: 2026-05-07
+  category: Publication
+  text: "Our [experimental measurement of quantum first-passage-time distributions](/publication/2026-05-07-quantum-first-passage-time-distributions) is out in *Physical Review Research*, and was featured in [Quantum Zeitgeist](https://quantumzeitgeist.com/quantum-systems-measure-first-passage-time-distributions-revealing-connections-classical/)."
+
+- date: 2025-08-29
+  category: Preprint
+  text: "Posted our measurement of quantum first-passage-time distributions in a trapped ion to arXiv. [[arXiv]](https://arxiv.org/abs/2508.21790)"

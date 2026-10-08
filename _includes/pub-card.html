@@ -1,0 +1,25 @@
+{% comment %}
+  Image card linking to a paper page (home page "Recent work" grid).
+  Usage: {% include pub-card.html pub=post %}
+{% endcomment %}
+{% include base_path %}
+{% assign pub = include.pub %}
+<a class="card" href="{{ base_path }}{{ pub.url }}">
+  {% if pub.thumbnail %}
+    <div class="card__media">
+      <img src="{{ base_path }}{{ pub.thumbnail }}" alt="" width="720" height="540" loading="lazy" decoding="async">
+    </div>
+  {% endif %}
+  <div class="card__body">
+    <div class="card__meta">
+      {% if pub.category == "preprints" %}
+        <span class="badge badge--preprint">{{ pub.venue_short | default: "arXiv" }}</span>
+      {% else %}
+        <span class="badge">{{ pub.venue_short | default: site.publication_category[pub.category].title }}</span>
+      {% endif %}
+      <span>{{ pub.date | date: "%b %Y" }}</span>
+    </div>
+    <h3 class="card__title">{{ pub.title }}</h3>
+    {% if pub.excerpt %}<p class="card__text">{{ pub.excerpt | strip_html | strip_newlines | truncate: 170 }}</p>{% endif %}
+  </div>
+</a>

@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+{% include base_path %}
+{% assign pub = page %}
+{% assign pid = page.slug | default: page.title | slugify %}
+{% if page.category == "preprints" %}
+  {% assign badge_class = "badge badge--preprint" %}
+  {% assign badge_text = page.venue_short | default: "arXiv" %}
+{% else %}
+  {% assign badge_class = "badge" %}
+  {% assign badge_text = page.venue_short | default: site.publication_category[page.category].title %}
+{% endif %}
+
+<article class="container" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <a class="back-link" href="{{ base_path }}/publications/"><span aria-hidden="true">&larr;</span> All publications</a>
+
+  <header class="paper-hero{% unless page.image %} paper-hero--no-art{% endunless %}">
+    <div>
+      <div class="paper-hero__badges">
+        <span class="{{ badge_class }}">{{ badge_text }}</span>
+        <span>{{ site.publication_category[page.category].singular | default: site.publication_category[page.category].title }}</span>
+        {% if page.date %}<span aria-hidden="true">&middot;</span><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %Y" }}</time>{% endif %}
+      </div>
+      <h1 class="paper-hero__title" itemprop="headline">{{ page.title }}</h1>
+      {% include pub-meta.html pub=page %}
+      {% include pub-links.html pub=page id=pid toggles=false %}
+    </div>
+    {% if page.image %}
+      <figure class="paper-hero__art">
+        <img src="{{ base_path }}{{ page.image }}" alt="{{ page.image_alt | default: '' }}" width="1254" height="1254" itemprop="image">
+      </figure>
+    {% endif %}
+  </header>
+
+  {% if page.abstract %}
+    <section class="paper-section" aria-labelledby="abstract">
+      <h2 class="paper-section__title" id="abstract">Abstract</h2>
+      <div class="prose" itemprop="abstract">{{ page.abstract | markdownify }}</div>
+    </section>
+  {% endif %}
+
+  {% assign body = content | strip %}
+  {% if body != "" %}
+    <section class="paper-section" aria-labelledby="notes">
+      <h2 class="paper-section__title" id="notes">{{ page.notes_title | default: "Notes" }}</h2>
+      <div class="prose">{{ content }}</div>
+    </section>
+  {% endif %}
+
+  {% if page.projects %}
+    <section class="paper-section" aria-labelledby="project">
+      <h2 class="paper-section__title" id="project">Project</h2>
+      <div class="prose">
+        {% for slug in page.projects %}
+          {% assign project = site.portfolio | where_exp: "p", "p.slug == slug" | first %}
+          {% if project %}<p>Part of <a href="{{ base_path }}{{ project.url }}">{{ project.title }}</a>.</p>{% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if page.bibtex %}
+    <section class="paper-section paper-cite" id="cite" aria-labelledby="cite-title">
+      <h2 class="paper-section__title" id="cite-title">Cite</h2>
+      <div class="bibtex">
+        <button class="pub-btn copy-btn" type="button" data-copy="{{ pid }}-bibtext">Copy</button>
+        <pre id="{{ pid }}-bibtext">{{ page.bibtex | strip | xml_escape }}</pre>
+      </div>
+    </section>
+  {% endif %}
+</article>

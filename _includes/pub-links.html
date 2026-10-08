@@ -1,0 +1,55 @@
+{% comment %}
+  Button row for one publication (al-folio style).
+  Usage: {% include pub-links.html pub=post id="unique-id" toggles=true %}
+    toggles=true  -> Abstract / BibTeX open inline panels (publication lists)
+    toggles=false -> BibTeX jumps to the #cite section (paper pages)
+{% endcomment %}
+{% include base_path %}
+{% assign pub = include.pub %}
+{% assign pid = include.id %}
+{% assign arxiv_abs = pub.arxiv | prepend: "https://arxiv.org/abs/" %}
+{% assign arxiv_pdf = pub.arxiv | prepend: "https://arxiv.org/pdf/" %}
+<div class="pub__links">
+  {% if include.toggles and pub.abstract %}
+    <button class="pub-btn" type="button" data-panel-toggle aria-expanded="false" aria-controls="{{ pid }}-abs">Abstract</button>
+  {% endif %}
+  {% if pub.arxiv %}
+    <a class="pub-btn" href="{{ arxiv_abs }}"><i class="ai ai-arxiv" aria-hidden="true"></i>arXiv</a>
+  {% endif %}
+  {% if pub.pdf %}
+    <a class="pub-btn" href="{{ pub.pdf }}"><i class="far fa-file-pdf" aria-hidden="true"></i>PDF</a>
+  {% elsif pub.arxiv %}
+    <a class="pub-btn" href="{{ arxiv_pdf }}"><i class="far fa-file-pdf" aria-hidden="true"></i>PDF</a>
+  {% endif %}
+  {% comment %} Journal link: the publisher page if given, otherwise the DOI. arXiv URLs are covered by the arXiv button. {% endcomment %}
+  {% assign journal_url = nil %}
+  {% if pub.paperurl %}{% unless pub.paperurl contains "arxiv.org" %}{% assign journal_url = pub.paperurl %}{% endunless %}{% endif %}
+  {% if journal_url == nil and pub.doi %}{% assign journal_url = pub.doi | prepend: "https://doi.org/" %}{% endif %}
+  {% if journal_url %}
+    <a class="pub-btn" href="{{ journal_url }}"><i class="fas fa-book-open" aria-hidden="true"></i>Journal</a>
+  {% endif %}
+  {% if pub.code %}
+    <a class="pub-btn" href="{{ pub.code }}"><i class="fas fa-code" aria-hidden="true"></i>Code</a>
+  {% endif %}
+  {% if pub.slidesurl %}
+    <a class="pub-btn" href="{{ pub.slidesurl }}"><i class="fas fa-person-chalkboard" aria-hidden="true"></i>Slides</a>
+  {% endif %}
+  {% if pub.bibtex %}
+    {% if include.toggles %}
+      <button class="pub-btn" type="button" data-panel-toggle aria-expanded="false" aria-controls="{{ pid }}-bib">BibTeX</button>
+    {% else %}
+      <a class="pub-btn" href="#cite"><i class="fas fa-quote-right" aria-hidden="true"></i>BibTeX</a>
+    {% endif %}
+  {% endif %}
+</div>
+{% if include.toggles %}
+  {% if pub.abstract %}
+    <div class="pub__panel" id="{{ pid }}-abs" hidden>{{ pub.abstract | markdownify }}</div>
+  {% endif %}
+  {% if pub.bibtex %}
+    <div class="pub__panel bibtex" id="{{ pid }}-bib" hidden>
+      <button class="pub-btn copy-btn" type="button" data-copy="{{ pid }}-bibtext">Copy</button>
+      <pre id="{{ pid }}-bibtext">{{ pub.bibtex | strip | xml_escape }}</pre>
+    </div>
+  {% endif %}
+{% endif %}

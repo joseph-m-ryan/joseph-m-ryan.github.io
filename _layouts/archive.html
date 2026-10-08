@@ -2,23 +2,23 @@
 layout: default
 ---
 
-{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
-  {% include page__hero.html %}
-{% endif %}
+{% include base_path %}
 
-{% if page.url != "/" and site.breadcrumbs %}
-  {% unless paginator %}
-    {% include breadcrumbs.html %}
+<div class="container">
+  {% unless page.hide_title %}
+    <header class="page-head">
+      <h1 class="page-head__title">{{ page.title }}</h1>
+      {% if page.subtitle %}<p class="page-head__lead">{{ page.subtitle | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>{% endif %}
+      {% if page.actions %}
+        <div class="page-head__actions">
+          {% for action in page.actions %}
+            {% if action.url contains "://" %}{% assign href = action.url %}{% else %}{% assign href = action.url | prepend: base_path %}{% endif %}
+            <a class="btn{% if action.primary %} btn--primary{% endif %}" href="{{ href }}">{% if action.icon %}<i class="{{ action.icon }}" aria-hidden="true"></i>{% endif %}{{ action.label }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </header>
   {% endunless %}
-{% endif %}
 
-<div id="main" role="main">
-  {% include sidebar.html %}
-
-  <div class="archive">
-    {% unless page.header.overlay_color or page.header.overlay_image or page.hide_title %}
-      <h1 class="page__title">{{ page.title }}</h1>
-    {% endunless %}
-    {{ content }}
-  </div>
+  {{ content }}
 </div>
