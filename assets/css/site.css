@@ -28,7 +28,6 @@
   --warm-line: rgba(219, 112, 20, 0.34);
   --glow-1: rgba(36, 83, 212, 0.07);
   --glow-2: rgba(124, 77, 255, 0.05);
-  --grid-line: rgba(36, 83, 212, 0.05);
   --art-bg: #030716;
   --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06);
   --shadow-hover: 0 2px 4px rgba(16, 24, 40, 0.06), 0 16px 40px rgba(16, 24, 40, 0.12);
@@ -61,7 +60,6 @@
   --warm-line: rgba(255, 173, 96, 0.32);
   --glow-1: rgba(70, 120, 255, 0.13);
   --glow-2: rgba(150, 90, 255, 0.09);
-  --grid-line: rgba(126, 170, 255, 0.045);
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.35);
   --shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.4), 0 18px 48px rgba(0, 0, 0, 0.5);
 
@@ -457,9 +455,7 @@ pre {
   z-index: -1;
   background:
     radial-gradient(640px 340px at 88% 8%, var(--glow-1), transparent 70%),
-    radial-gradient(560px 320px at 6% 0%, var(--glow-2), transparent 70%),
-    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0 / 44px 44px;
+    radial-gradient(560px 320px at 6% 0%, var(--glow-2), transparent 70%);
   -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent);
   mask-image: linear-gradient(to bottom, #000 40%, transparent);
   pointer-events: none;
