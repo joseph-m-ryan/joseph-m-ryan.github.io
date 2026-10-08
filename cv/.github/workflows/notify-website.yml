@@ -15,5 +15,5 @@ jobs:
           curl -f -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $TOKEN" \
-            https://api.github.com/repos/joseph-ryan-quantum/joseph-ryan-quantum.github.io/dispatches \
+            https://api.github.com/repos/joseph-m-ryan/joseph-m-ryan.github.io/dispatches \
             -d '{"event_type":"cv-updated"}'
