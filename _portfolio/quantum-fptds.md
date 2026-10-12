@@ -2,6 +2,7 @@
 title: "Quantum First-Passage-Time Distributions"
 excerpt: "When does a quantum system first cross an energy threshold? Measuring and modeling first-passage times for a trapped ion under noise and repeated measurement."
 collection: portfolio
+order: 1
 thumbnail: /images/quantum-fptds-fig.png
 thumbnail_style: figure
 image: /images/quantum-fptds-fig.png

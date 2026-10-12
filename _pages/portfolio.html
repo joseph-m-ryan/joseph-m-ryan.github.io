@@ -8,7 +8,8 @@ subtitle: "Research threads that span experiment, theory, and several papers."
 {% include base_path %}
 
 <div class="project-list">
-  {% for project in site.portfolio %}
+  {% assign projects = site.portfolio | sort: "order" %}
+  {% for project in projects %}
     {% assign slug = project.slug %}
     {% assign related = site.publications | where_exp: "p", "p.projects contains slug" %}
     <a class="card card--row" href="{{ base_path }}{{ project.url }}">

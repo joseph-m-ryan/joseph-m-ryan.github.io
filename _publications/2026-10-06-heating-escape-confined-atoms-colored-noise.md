@@ -23,6 +23,7 @@ abstract: >-
 arxiv: "2610.09047"
 thumbnail: /images/publications/colored-noise-escape-thumb.webp
 image: /images/publications/colored-noise-escape.webp
+projects: [colored-noise-heating]
 image_alt: "Illustration of colored noise with a 1/f power spectrum driving a particle over the barrier of a softening trapping potential."
 bibtex: |
   @misc{ryan2026heating,

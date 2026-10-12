@@ -1,11 +1,12 @@
 # Notes for working on this site
 
-Joseph M. Ryan's research website: https://joseph-m-ryan.github.io (repo `joseph-m-ryan/joseph-m-ryan.github.io`). See `README.md` for how to add publications, news and talks.
+Joseph M. Ryan's research website: https://joseph-m-ryan.github.io (repo `joseph-m-ryan/joseph-m-ryan.github.io`). See `README.md` for how to add publications and projects.
 
 ## How it builds and deploys
 
 - GitHub Pages' **classic build** from `main` (no Pages workflow): the `github-pages` gem, i.e. Jekyll 3.10 in `--safe` mode with only whitelisted plugins. No custom plugins and no Jekyll 4 features. Pushing to `main` deploys in about a minute.
 - Check a change the way Pages builds it: `JEKYLL_ENV=production bundle exec jekyll build --safe`.
+- On the user's Mac the system Ruby (2.6) is too old for the gems. Use the conda env `jekyll` (Ruby 3.3, set up 2026-10-12; gems in `vendor/bundle`): `conda activate jekyll`, and put `$CONDA_PREFIX/bin` first on `PATH` so `bundle` isn't `/usr/bin/bundle`.
 - The user pushes straight to `main`; commit or push only when they ask.
 
 ## Design and code layout
@@ -21,7 +22,7 @@ Joseph M. Ryan's research website: https://joseph-m-ryan.github.io (repo `joseph
 - `base_path` is absolute (`site.url`), so built links point at the production URL. For local preview, `jekyll serve` (development env) overrides the URL; production-mode local builds need a `url:` override config.
 - Publication thumbnails are 4:3 webp (720×540) cropped from square art; the full image is used on the paper page. The crop command is in `README.md`.
 - The publication "abstracts" in front matter are short summaries (the newest one was written by Claude), not verbatim arXiv abstracts. The user may swap in the real ones.
-- `_data/talks.yml` duplicates the talks in the CV, so update both.
+- The home page's News and Talks sections (and `_data/news.yml`, `_data/talks.yml`) were removed on 2026-10-12; talks now live only in the CV.
 
 ## CV pipeline (don't edit `cv/` directly)
 

@@ -5,9 +5,8 @@ Joseph M. Ryan's research website, built with [Jekyll](https://jekyllrb.com/) an
 ## Editing content
 
 - **Home page** (bio, interests, profile card links, "New preprint" banner): `_pages/about.md`
-- **News** and **Talks** on the home page: `_data/news.yml`, `_data/talks.yml`
 - **Publications**: one Markdown file per paper in `_publications/` (see below)
-- **Projects**: one Markdown file per project in `_portfolio/`
+- **Projects**: one Markdown file per project in `_portfolio/` (`order:` sets the position on the Projects page)
 - **CV**: generated from `cv/main.tex` (synced from Overleaf) into `_includes/cv-generated.html` and `files/cv.pdf`
 - **Site-wide settings** (name, email, profile links): `_config.yml`
 - **Nav bar**: `_data/navigation.yml`

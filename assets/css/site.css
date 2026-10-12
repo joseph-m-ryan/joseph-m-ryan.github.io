@@ -658,20 +658,6 @@ pre {
   letter-spacing: -0.02em;
 }
 
-.two-col {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: 56px;
-}
-
-.two-col > .section {
-  padding: 0;
-}
-
-.two-col > .section::before {
-  display: none;
-}
-
 /* Cards (home "Recent work" and the Projects page) */
 
 .card-grid {
@@ -799,93 +785,6 @@ pre {
 
 .card--row .card__more {
   margin-top: 6px;
-}
-
-/* News + talks (dated lists) */
-
-.dated-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.dated-list__item {
-  display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
-  gap: 20px;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.dated-list--compact .dated-list__item {
-  grid-template-columns: 52px minmax(0, 1fr);
-  gap: 16px;
-}
-
-.dated-list__item:first-child {
-  padding-top: 0;
-}
-
-.dated-list__item:last-child {
-  border-bottom: 0;
-}
-
-.dated-list__date {
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  line-height: 1.9;
-  white-space: nowrap;
-}
-
-.dated-list__tag {
-  display: inline-block;
-  margin-top: 4px;
-  padding: 1px 7px;
-  border-radius: 5px;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-.dated-list__tag--preprint {
-  border-color: var(--warm-line);
-  background: var(--warm-soft);
-  color: var(--warm);
-}
-
-.dated-list__tag--publication {
-  border-color: var(--accent-line);
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-.dated-list__text {
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 0.95rem;
-}
-
-.dated-list__text p {
-  margin: 0;
-}
-
-.dated-list__title {
-  margin: 0;
-  color: var(--text);
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-.dated-list__sub {
-  margin: 2px 0 0;
-  color: var(--muted);
-  font-size: 0.88rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -1587,22 +1486,6 @@ html:not(.js) [data-copy] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .two-col {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-  }
-
-  .two-col > .section + .section {
-    margin-top: 40px;
-    padding-top: 40px;
-  }
-
-  .two-col > .section + .section::before {
-    display: block;
-    right: 0;
-    left: 0;
-  }
-
   .paper-hero {
     grid-template-columns: minmax(0, 1fr) 280px;
     gap: 36px;
@@ -1731,21 +1614,6 @@ html:not(.js) [data-copy] {
     grid-template-columns: minmax(0, 1fr);
     gap: 14px;
     padding: 28px 0;
-  }
-
-  .dated-list__item {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 4px;
-  }
-
-  .dated-list__date {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .dated-list__tag {
-    margin-top: 0;
   }
 }
 
