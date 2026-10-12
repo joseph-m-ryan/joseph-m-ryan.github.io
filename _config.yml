@@ -197,7 +197,10 @@ exclude:
   - package.json*
   - Rakefile
   - README
+  - README.md
+  - CLAUDE.md
   - tmp
+  - tools
   - vendor
 keep_files:
   - .git
