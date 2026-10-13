@@ -20,7 +20,7 @@ Joseph M. Ryan's research website: https://joseph-m-ryan.github.io (repo `joseph
 
 - `_layouts/compress.html` collapses whitespace in production, so **inline `<script>` blocks must not use `//` comments** (everything ends up on one line). External JS files are unaffected.
 - `base_path` is absolute (`site.url`), so built links point at the production URL. For local preview, `jekyll serve` (development env) overrides the URL; production-mode local builds need a `url:` override config.
-- Publication thumbnails are 4:3 webp (720×540) cropped from square art; the full image is used on the paper page. The crop command is in `README.md`.
+- Publication art (square 1254×1254 for the paper page, 4:3 720×540 thumbnail) is drawn with matplotlib by `tools/pub-art/make_art.py`, as toy-model illustrations on the dark theme colors (the user asked for a balance: more artistic than plain plots, with soft glows and no axis frames, but not AI-looking). These replaced AI-generated illustrations on 2026-10-13 because the user was told those looked too AI. On the user's Mac, run it with `/opt/miniconda3/envs/quantum/bin/python` (the base Python has no matplotlib).
 - The publication "abstracts" in front matter are short summaries (the newest one was written by Claude), not verbatim arXiv abstracts. The user may swap in the real ones.
 - The home page's News and Talks sections (and `_data/news.yml`, `_data/talks.yml`) were removed on 2026-10-12; talks now live only in the CV.
 

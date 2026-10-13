@@ -24,7 +24,7 @@ arxiv: "2610.09047"
 thumbnail: /images/publications/colored-noise-escape-thumb.webp
 image: /images/publications/colored-noise-escape.webp
 projects: [colored-noise-heating]
-image_alt: "Illustration of colored noise with a 1/f power spectrum driving a particle over the barrier of a softening trapping potential."
+image_alt: "Illustration of noise traces of different colors and their power-law spectra above a tilted trap with one barrier lowered, where one simulated particle diffuses up in energy before escaping over the lowered barrier and another leaves ballistically in a single pass."
 bibtex: |
   @misc{ryan2026heating,
     title         = {Heating and Escape of Confined Atoms Subject to Colored Noise},

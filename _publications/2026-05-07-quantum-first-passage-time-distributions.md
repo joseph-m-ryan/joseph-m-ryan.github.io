@@ -24,7 +24,7 @@ pdf: "https://journals.aps.org/prresearch/pdf/10.1103/p3pl-1m6n"
 paperurl: "https://journals.aps.org/prresearch/abstract/10.1103/p3pl-1m6n"
 thumbnail: /images/publications/qfptd-experiment-thumb.webp
 image: /images/publications/qfptd-experiment.webp
-image_alt: "Illustration of a single ion held between trap electrodes, next to a sequence of measurement snapshots of its motional energy spreading over time."
+image_alt: "Illustration of an ion held between the blades and endcap needles of a trap, beside a train of measurement pulses, snapshots of the ion's motional state spreading toward a threshold, and single-shot energy readings climbing until they first cross it."
 projects: [quantum-fptds]
 bibtex: |
   @article{ryan2026experimental,

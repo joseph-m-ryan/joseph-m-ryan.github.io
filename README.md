@@ -48,7 +48,14 @@ bibtex: |
 ---
 ```
 
-To make a 4:3 thumbnail from a square image with ImageMagick:
+The current publication images are matplotlib schematics drawn by `tools/pub-art/make_art.py`, which
+writes both the square image and the 4:3 thumbnail (needs numpy, matplotlib and Pillow):
+
+```bash
+python tools/pub-art/make_art.py
+```
+
+For other artwork, to make a 4:3 thumbnail from a square image with ImageMagick:
 
 ```bash
 convert name.webp -crop 1254x940+0+157 +repage -resize 720x540 -quality 82 name-thumb.webp

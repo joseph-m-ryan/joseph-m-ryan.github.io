@@ -5,7 +5,7 @@ collection: portfolio
 order: 2
 thumbnail: /images/publications/colored-noise-escape-thumb.webp
 image: /images/publications/colored-noise-escape-thumb.webp
-image_alt: "Illustration of colored noise with a 1/f power spectrum driving a particle over the barrier of a softening trapping potential."
+image_alt: "Illustration of noise traces of different colors and their power-law spectra above a tilted trap with one barrier lowered, where one simulated particle diffuses up in energy before escaping over the lowered barrier and another leaves ballistically in a single pass."
 image_caption: "Colored noise with a power-law spectrum heats a particle until it escapes over the barrier of a softening trap."
 ---
 
