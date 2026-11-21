@@ -9,7 +9,7 @@
 
 {% comment %}
   Set the color theme before first paint. An explicit choice saved by the toggle
-  wins; otherwise default_dark_mode decides, falling back to the OS preference.
+  wins; otherwise default_dark_mode decides (dark if true, light if false).
   No line comments in here: the compress layout joins this script onto one line.
 {% endcomment %}
 <script>
@@ -19,7 +19,7 @@
     var theme = null;
     try { theme = localStorage.getItem('theme'); } catch (e) {}
     if (theme !== 'dark' && theme !== 'light') {
-      theme = {% if site.default_dark_mode %}'dark'{% else %}(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'){% endif %};
+      theme = {% if site.default_dark_mode %}'dark'{% else %}'light'{% endif %};
     }
     root.setAttribute('data-theme', theme);
   })();

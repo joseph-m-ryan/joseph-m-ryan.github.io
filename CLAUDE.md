@@ -11,7 +11,7 @@ Joseph M. Ryan's research website: https://joseph-m-ryan.github.io (repo `joseph
 
 ## Design and code layout
 
-- Custom design (Oct 2026) modeled on https://functions-lab.github.io (layout, IBM Plex fonts, year-grouped publications, badges, filters) and al-folio sites like https://yuanliu.group/publications/ (thumbnail + Abstract/arXiv/PDF/BibTeX buttons). Dark mode is the default.
+- Custom design (Oct 2026) modeled on https://functions-lab.github.io (layout, IBM Plex fonts, year-grouped publications, badges, filters) and al-folio sites like https://yuanliu.group/publications/ (thumbnail + Abstract/arXiv/PDF/BibTeX buttons). Light mode is the default (switched from dark on 2026-11-21 via `default_dark_mode` in `_config.yml`); a visitor's toggle choice is remembered in localStorage.
 - Styles: `assets/css/site.css` is plain CSS (no Sass) with color tokens on `:root` and `[data-theme="dark"]`. Scripts: `assets/js/site.js` (theme toggle, mobile menu, Abstract/BibTeX panels, copy, publication filters). No jQuery.
 - Layouts: `default`, `home` (about.md), `publication`, `project`, `single`, `archive`. Publication pieces: `_includes/pub-entry.html`, `pub-links.html`, `pub-meta.html`, `pub-card.html`.
 - The old academicpages Sass (`_sass/`, `assets/css/main.scss`) and JS (`assets/js/main.min.js`, `_main.js`), plus includes like `sidebar.html` and `author-profile.html`, are still in the repo but no longer used. They're safe to delete.

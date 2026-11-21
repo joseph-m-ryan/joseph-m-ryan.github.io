@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "air" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-default_dark_mode        : true  # If true, the site loads in dark mode by default (visitors can still toggle with the sun/moon icon)
+default_dark_mode        : false # If true, the site loads in dark mode by default; if false, in light mode (visitors can still toggle with the sun/moon icon)
 title                    : "Joseph M. Ryan"
 title_separator          : "-"
 name                     : &name "Joseph M. Ryan"
